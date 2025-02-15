@@ -1,17 +1,28 @@
 :root {
-  --colour-primary:        #62239b;
+  --colour-primary:        #160C28;
+  --colour-primary-subtle: #331C5F;
+  --colour-primary-light:  #6035B1;
+
   --colour-on-primary:     white;
+  --colour-on-primary-subtle: #B5A6B0;
+  --colour-on-primary-highlight: #AAB0CF;
+
   --primary-border-colour: rgba(0, 0, 0, 0.5);
 
-  --colour-secondary:      white;
+  --colour-medium:         #9A9AB7;
+
+  --colour-secondary:      #F1E9EE;
+  --colour-secondary-subtle: #DFCED9;
+  --colour-secondary-light: #CBAFC2;
+
   --colour-on-secondary:   black;
 
-  --colour-accent:         #FFB400;
-  --colour-subtle:         #D3D4E1;
+  --colour-accent:         #EFCB68;
+  --colour-subtle:         #B98EA7;
 
-  --text-colour:           #333333;
-  --text-colour-subtle:    #888888;
-  --text-colour-highlight: #8FA0B8;
+  --text-colour:           #000411;
+  --text-colour-subtle:    #000929;
+  --text-colour-highlight: #0032E6;
 
   --card-background:       var(--colour-subtle);
 
@@ -77,8 +88,38 @@ button {
   font-size: var(--font-size);
 }
 
+.projectBar {
+  background: var(--colour-medium);
+  min-height: 150px;
+  margin-top: 5px;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.projectInfo {
+  margin-right: auto;
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.projectInfo h1 {
+  font-size: clamp(12px, 5vw, var(--title-font-size));
+}
+
+.projectInfo p {
+  font-size: clamp(10px, 3vw, var(--input-font-size));
+}
+
 .bulletedList {
   padding-left: 20px;
+}
+
+.imageIn {
+  max-width: 200px;
+  border: 2px solid var(--colour-accent);
 }
 
 .card {
@@ -86,7 +127,7 @@ button {
   height: max-content;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
   margin: 10px;
 
@@ -145,6 +186,11 @@ button {
 
 .mainBody {
   flex: 1;
+  color: var(--text-colour);
+}
+
+.mainBody a {
+  color: var(--text-colour-highlight);
 }
 
 .mainBody h1, .mainBody h2, .mainBody p {
@@ -153,7 +199,7 @@ button {
 
 footer {
   background-color: var(--colour-primary);
-  color: var(--text-colour-subtle);
+  color: var(--colour-on-primary-subtle);
   text-align: right;
   padding: var(--tag-padding);
 }
@@ -169,7 +215,7 @@ footer {
 }
 
 .footer-container a {
-  color: var(--text-colour-highlight);
+  color: var(--colour-on-primary-highlight);
   text-decoration: none;
 }
 
@@ -214,7 +260,7 @@ footer {
   text-transform: uppercase;
 }
 .topBar a.active,.topBar a:hover{
-  background: var(--colour-subtle);
+  background: var(--colour-primary-light);
   transition: .5s;
 }
 
@@ -251,7 +297,7 @@ footer {
     position: fixed;
     width: 100%;
     height: 100vh;
-    background: #888888;
+    background: var(--colour-secondary-light);
     top: 80px;
     left: -100%;
     text-align: center;
@@ -263,11 +309,12 @@ footer {
     line-height: 30px;
   }
   .topBar ul li a {
+    color: var(--text-colour);
     font-size: 20px;
   }
   .topBar a:hover,.topBar a.active{
     background: none;
-    color: #0082e6;
+    color: var(--text-colour-highlight);
   }
   #check:checked ~ ul{
     left: 0;
