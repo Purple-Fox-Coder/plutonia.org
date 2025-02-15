@@ -152,6 +152,42 @@ input {
   border: 2px solid var(--colour-accent);
 }
 
+.searchResult {
+  width: 100%;
+  height: max-content;
+
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 2px;
+
+  border: 2px solid transparent;
+
+  background: var(--colour-secondary-light);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  align-items: left;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.searchResult:hover {
+  border-color: var(--colour-primary);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.searchResult h1 {
+  font-size: var(--header-font-size);
+  font-weight: bold;
+}
+
+.searchResult p {
+  font-size: var(--font-size);
+  color: var(--text-colour);
+  line-height: 1.4;
+}
+
 .card {
   width: max-content;
   height: max-content;
