@@ -1,0 +1,39 @@
+:root {
+    --construction-text-colour: #ff9800;
+    --construction-padding: 20px;
+}
+
+.mainBody {
+    text-align: center;
+    padding: var(--construction-padding);
+}
+
+.constructionContainer {
+    width: 100%;
+    margin: auto
+    margin-right: 10px;
+    margin-left: 10px
+    background: var(--colour-secondary-subtle);
+    padding: var(--construction-padding);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20%;
+}
+
+.constructionContainer h1 {
+    color: var(--construction-text-colour);
+    font-size: 28px;
+}
+
+.constructionContainer p {
+    font-size: 18px;
+}
+
+.constructionContainer a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.constructionContainer a:hover {
+    text-decoration: underline;
+}
