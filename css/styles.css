@@ -34,6 +34,7 @@
   --scrollbar-colour:      rgba(90, 90, 90, 0.5);
 
   --font-size:             12px;
+  --font-size-body:        16px;
   --title-font-size:       35px;
   --header-font-size:      25px;
   --subheader-font-size:   20px;
@@ -266,6 +267,10 @@ input {
 
 .mainBody h1, .mainBody h2, .mainBody p {
   margin: 5px;
+}
+
+.mainBody a, .mainBody p, .mainBody li, .mainBody strong {
+  font-size: var(--font-size-body);
 }
 
 footer {
