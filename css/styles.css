@@ -28,7 +28,7 @@
 
   --button-background-colour: var(--colour-accent);
   --button-background-colour-hover: color-mix(in srgb, var(--button-background-colour) 60%, black 20%);
-  --button-background-colour-selected: color-mix(in srgb, var(--button-background-colour) 60%, white 20%);;
+  --button-background-colour-selected: color-mix(in srgb, var(--button-background-colour) 60%, white 20%);
 
   --scrollbar-background-colour: #222525;
   --scrollbar-colour:      rgba(90, 90, 90, 0.5);
@@ -124,6 +124,34 @@ input {
   height: 5px;
 }
 
+.blog {
+  background: var(--colour-medium);
+  min-height: 150px;
+  margin-top: 5px;
+}
+
+.blog .image {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+.blog .section {
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.blog h1 {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: var(--colour-secondary-light);
+}
+
+.blog p {
+  text-indent:initial;
+}
+
 .projectBar {
   background: var(--colour-medium);
   min-height: 150px;
@@ -131,6 +159,10 @@ input {
   align-items: center;
   display: flex;
   justify-content: flex-end;
+}
+
+.projectBar .projectInfo {
+  max-width: 85%;
 }
 
 .projectInfo {

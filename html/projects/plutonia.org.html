@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <title>Plutonia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <nav class="topBar">
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <p>≡</p>
+      </label>
+
+      <label class="logo">Plutonia</label>
+      <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../about.html">About Me</a></li>
+        <li><a href="../portfolio.html">Projects</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="mainBody">
+      <div class="projectBar">
+        <div class="projectInfo">
+          <h1>Plutonia.org</h1>
+          <p>
+            This is my website where I post devlogs and blog a bit about
+            interesting projects I'm working on or have seen!  Topics will typically
+            revolve around low level development, EEG research, and linux/OS
+            development.
+
+            I often prefer to use languages like C or Zig, but there may be a
+            variety of languages here.
+          </p>
+        </div>
+        <div class="card">
+          <form action="html/projects/plutonia.org.html">
+            <input type="image" src="../../images/128x128.png" alt="Plutonia Logo"
+            name="saveForm" class="imageIn" />
+          </form>
+        </div>
+      </div>
+
+      <div class="blog">
+        <h1>9/4/2025 - Beginnings</h1>
+        <p class="section">
+          &emsp;Today was fairly simple, planning how I want to set up the site,
+          what kind of things I want to post here.. the like.  Not a ton to say,
+          but I did find out about &amp;emsp; and the &amp; codes for html!  This
+          particular post is also doubling as a way to make sure I set up the
+          styling and all correctly in the CSS which is fairly simple as of now.
+          Here's a code block of it:
+        </p>
+        <pre>
+          <code>
+            .blog {
+              background: var(--colour-medium);
+              min-height: 150px;
+              margin-top: 5px;
+            }
+
+            .blog .section {
+              padding: 20px;
+              margin-top: 20px;
+            }
+
+            .blog h1 {
+              padding: 30px;
+              font-size: 40px;
+              text-align: center;
+              background: var(--colour-secondary-light);
+            }
+
+            .blog p {
+              text-indent:initial;
+            }
+          </code>
+        </pre>
+        <p class="section">
+          &emsp;I've set everything up so that I have the main site colours as
+          variables for quick use.  For this piece of styling in particular
+          I mostly borrowed from
+          <a href="https://www.w3schools.com/howto/howto_css_blog_layout.asp"
+          >w3schools' blog layout</a> for simplicity.  Since I intend to keep this
+          website as static as possible (mostly for the sake of avoiding lots of
+          hosting costs...) it's been an interesting challenge of figuring out how
+          I want to lay things out so that it's still easy to navigate with
+          minimal or ideally no JS usage (though I may add some in at some point
+          for a simple search bar.  I am also wondering if I might want subpages
+          for the individual devlogs.  I might do that for specific projects if
+          their single page gets a little too long for my liking (maybe a prev
+          and next buttons setup, to keep the simple feel).
+        </p>
+        <p class="section">
+          &emsp;Today also marks the first thing posted here! :D (party noises)
+          For my projects, they're going to be more of a devlog, I'm planning to
+          add BLOG in the title of any actual blog/article posts I make here.
+          Do I expect anyone to read these?  Not exactly, but it seems like a
+          fun project, and a nice way to get out my thoughts on various topics
+          I'm interested in!
+        </p>
+      </div>
+
+    </div>
+</body>
+<footer>
+  <div class="footer-container">
+    <p>&copy; 2025 Anna Robinson. All rights reserved. | <a href="https://plutonia.org">plutonia.org</a></p>
+    <nav>
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="../privacy.html">Privacy Policy</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+</html>
