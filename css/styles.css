@@ -63,6 +63,10 @@
   font-family: var(--font-family);
 }
 
+b {
+  font-size: var(--font-size) + 3px;
+}
+
 todo {
   font-size: 30px;
   color: #FF0000;
@@ -427,4 +431,8 @@ footer {
   #check:checked ~ ul{
     left: 0;
   }
+}
+
+.hdr a {
+  color: var(--colour-on-secondary);
 }
