@@ -1,0 +1,16 @@
+---
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import ProjectCard from "../../../components/ProjectCard.astro";
+---
+
+<ArticleLayout
+  title="plutonia.org"
+    description="This is my website where I post devlogs and blog a bit about interesting projects I'm working on or have seen!  Topics will typically revolve around low level development, EEG research, and linux/OS development.\n\nI often prefer to use languages like C or Zig, but there may be a variety of languages here."
+      image="">
+        <!-- TODO: Make this prettier -->
+        <ProjectCard
+          title="beginnings"
+          href="../beginnings"
+          description={`My experience getting plutonia.org initially set up`}
+        />
+</ArticleLayout>

@@ -1,0 +1,159 @@
+---
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import { Code } from 'astro:components';
+---
+
+<ArticleLayout
+  title="The Kernel (9/4/2025)"
+    description="Building the kernel: The core of an operating system" image="">
+      <div class="blog">
+          <h1>9/4/2025 - The Kernel</h1>
+          <p class="section">
+            &emsp;The core of the operating system- the infamous kernel... naturally
+            instead of just using 32bit as my goto I opt for the probably exponentially
+            harder option of going <b>straight to 64bit mode</b>.  So, that's been
+            an adventure.  For those crazy like me and find themselves here, these
+            are the tools and technologies I'm using:
+          </p>
+          <pre style="margin-left:5%;">
+            <p style="white-space:normal">
+              1. <a href="https://ziglang.org/">Zig</a>:  Simply has the best built
+              in build system I have ever seen.  If you haven't heard of it, as of
+              writing it's a newer low level programming language that, as far as
+              I have been able to tell, has similar philosophies to C.
+            </p>
+            <p style="white-space:normal">
+              2. <a href="https://www.qemu.org/">Qemu</a>:  A virtual machine, any
+              should do.  Qemu is open source and most importantly (to me) it works
+              on linux.
+            </p>
+            <p style="white-space:normal">
+              3. A <a href="https://en.wikipedia.org/wiki/VNC">VNC</a> viewer:
+              the way I use qemu starts a vnc server, so on linux I use
+              <a href="https://apps.kde.org/krdc/">KRDC</a> and on windows I
+              use <a href="https://apps.microsoft.com/detail/xp99dvcpgktxnj">Real VNC</a>.
+              Are they amazing?  No idea, but they get the job done; that being connect
+              and view what the screen is showing.
+            </p>
+            <p style="white-space:normal">
+              4. <a href="https://codeberg.org/Limine/Limine">Limine</a>:   A
+              bootloader to make this whole process easier, other options are available
+              and you can see some of them on
+              <a href="https://wiki.osdev.org/Bootloader">this page of OSdev</a>.
+            </p>
+            <p style="white-space:normal">
+              5. <a href="https://git-scm.com/">Git</a>:   Widely used version control
+              system, love it or hate it.. it's pretty good at what it does.
+            </p>
+            <p style="white-space:normal">
+              6. <a href="https://www.gnu.org/software/xorriso/">Xorriso</a>:
+              Helps me package my ISO so that I can then run my OS.
+            </p>
+          </pre>
+          <p class="section">
+            &emsp;A big help in getting everything going and researching for this project
+            has been the <a href="https://wiki.osdev.org/">OSDev wiki</a>.  Now,
+            onto the exciting part!  Firstly I had to set up a linker script; you
+            don't usually have to do this for most zig/C/C++ programs, but when
+            making an OS it is <b>IMPORTANT</b> because otherwise the compiler
+            will assume there already IS an OS.
+          </p>
+          <pre>
+            <Code code={`
+              ENTRY(_start)
+
+              SECTIONS
+              {
+                . = 1M;
+
+                .multiboot : ALIGN(4K) {
+                  KEEP(*(.multiboot))
+                }
+
+                .text : ALIGN(4K) {
+                  *(.text*)
+                }
+
+                .rodata : ALIGN(4K) { *(.rodata*)  }
+                .data   : ALIGN(4K) { *(.data*  )  }
+                .bss    : ALIGN(4K) {
+                  *(COMMON)
+                  *(.bss*)
+                }
+
+                /DISCARD/ :
+                {
+                    *(.eh_frame)
+                    *(.comment)
+                    *(.note.gnu.property)
+                }
+              }
+              `} lang="c"
+            />
+          </pre>
+          <p class="section">
+            &emsp;I initially started off by using
+            <a href="https://www.gnu.org/software/grub/">Grub</a> boot loader, so
+            I had opted to use <a href="https://wiki.osdev.org/Multiboot">Multiboot</a> and
+            eventually ended up switching to Multiboot2 (the newer variant).  Fortunately
+            When I swapped to using Limine as my boot loader it still supports Multiboot2
+            without issue so I did not have to change anything.  Limine did require
+            a bit more work in terms of setting up my build process though, namely
+            importing it, running <a href="https://www.gnu.org/software/make/">make</a>
+            and then copying over the necessary files into my ISO folder.  Not
+            terribly complex, but of note.  Similar to grub though it has a config;
+            both were fairly straightforward in usage.
+          </p>
+          <pre>
+            <Code code={`
+              const MAGIC: u32 = 0xe85250d6;
+              const FLAGS: u32 = 4;
+
+              pub const MultibootHeader = extern struct {
+                  magic    : u32 align(1) = MAGIC,
+                  flags    : u32 align(1),
+                  length   : u32 align(1),
+                  checksum : u32 align(1),
+                  reserved1: u16 align(1) = 0,
+                  reserved2: u16 align(1) = 0,
+                  end      : u32 align(1) = 8
+              };
+
+              export var multiboot: MultibootHeader align(8) linksection(".multiboot") = .{
+                  .flags    = FLAGS,
+                  .length   = @sizeOf(MultibootHeader),
+                  .checksum = -(@as(i32, @bitCast(MAGIC)) + @as(i32, @bitCast(FLAGS)) +
+                                  @sizeOf(MultibootHeader))
+              };
+
+              var stack_bytes: [16 * 1024]u8 align(16) linksection(".bss") = undefined;
+
+              export fn _start() callconv(.Naked) noreturn {
+                  asm volatile (
+                      \\ mov %[stack_top], %%rsp
+                      \\ and $-16, %%rsp
+                      \\ call %[kmain:P]
+                      :
+                      : [stack_top] "i" (@as([*]align(16) u8, @ptrCast(&stack_bytes)) + @sizeOf(@TypeOf(stack_bytes))),
+                          [kmain] "X" (&kernel.kernelMain)
+                      :
+                  );
+              }
+              `} lang="zig"
+            />
+          </pre>
+          <p class="section">
+            &emsp;For the sake of simplicity should I want to support multiple
+            <a href="https://en.wikipedia.org/wiki/Instruction_set_architecture">
+            CPU architectures</a> (namely aarm64, x86_64, x86) I have seperate files
+            with the above in them, then tell zig which one to use.  The above is
+            mainly just telling limine how to boot the kernel, and then creating the
+            <a href="https://en.wikipedia.org/wiki/Call_stack">call stack</a> (setting
+            the top of it with the rsp memory register).  From here, I call kernelMain
+            and can finally get to work (though I have not got text to render as of
+            writing this, and may have to change the
+            <a href="https://en.wikipedia.org/wiki/Text_mode">text mode</a>
+            accordingly)
+          </p>
+        </div>
+</ArticleLayout>

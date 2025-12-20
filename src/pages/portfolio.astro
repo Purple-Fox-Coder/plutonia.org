@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+---
+
+<BaseLayout>
+  <NavBar />
+
+  <div class="mainBody">
+    <div class="searchContainer">
+      <img src="../images/search.png" class="searchIcon"/>
+      <input type="text" class="searchBar" id="searchBar" placeholder="Search..." />
+    </div>
+    <div class="seperator"></div>
+    <div id="searchResults">
+      <!-- auto generated -->
+      <div class="searchResult" onclick="window.location.href='construction.html'">
+        <h1>Project name is here</h1>
+        <p>project description</p>
+      </div>
+    </div>
+    <!-- <todo>TODO: Implement search logic</todo> -->
+  </div>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,15 @@
+---
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import ProjectCard from "../../../components/ProjectCard.astro";
+---
+
+<ArticleLayout
+  title="Plutonium OS"
+    description="This is my OS (Operating System) project I'm working on as an academic exercise to learn about the zig programming language and about OS design and process of creating one." image="">
+        <!-- TODO: Make this prettier -->
+        <ProjectCard
+          title="The Kernel"
+          href="../the-kernel"
+          description={`Building the kernel: The core of an operating system`}
+        />
+</ArticleLayout>
