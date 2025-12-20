@@ -2,13 +2,12 @@
 const {
   title,
   href,
-  description,
-  image,
+  description
 } = Astro.props;
-import "../styles/global.css"
+import "../styles/global.css";
 ---
 
-<div class="projectCard">
+<div class="projectBar">
   <div class="projectInfo">
     <div class="hdr">
       <a class="hdr" href={href}>
@@ -19,17 +18,9 @@ import "../styles/global.css"
     <p>{description}</p>
   </div>
 
-  {image && (
-    <div class="card">
-      <a href={href}>
-        <img
-          src={image}
-          alt={`${title} logo`}
-          class="imageIn"
-          width="128"
-          height="128"
-        />
-      </a>
-    </div>
-  )}
+  <div class="card">
+    <a href={href}>
+      <slot />
+    </a>
+  </div>
 </div>

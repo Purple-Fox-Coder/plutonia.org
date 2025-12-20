@@ -1,16 +1,28 @@
 ---
 import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 import ProjectCard from "../../../components/ProjectCard.astro";
+import { Image } from 'astro:assets';
+
+const title = `plutonia.org`;
 ---
 
 <ArticleLayout
-  title="plutonia.org"
-    description="This is my website where I post devlogs and blog a bit about interesting projects I'm working on or have seen!  Topics will typically revolve around low level development, EEG research, and linux/OS development.\n\nI often prefer to use languages like C or Zig, but there may be a variety of languages here."
-      image="">
-        <!-- TODO: Make this prettier -->
-        <ProjectCard
-          title="beginnings"
-          href="../beginnings"
-          description={`My experience getting plutonia.org initially set up`}
-        />
+  title={`${title}`}
+  description="This is my website where I post devlogs and blog a bit about interesting projects I'm working on or have seen!  Topics will typically revolve around low level development, EEG research, and linux/OS development.\n\nI often prefer to use languages like C or Zig, but there may be a variety of languages here."
+  >
+    <div class="flex justify-center items-center">
+      <Image
+        src={import ("../../../media/128x128.png")}
+        alt={`${title} logo`}
+        class="imageIn"
+        width="128"
+        height="128"
+      />
+    </div>
+    <!-- TODO: Make this prettier -->
+    <ProjectCard
+      title="beginnings"
+      href="../beginnings"
+      description={`My experience getting plutonia.org initially set up`}
+    />
 </ArticleLayout>

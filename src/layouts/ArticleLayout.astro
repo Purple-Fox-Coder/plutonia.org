@@ -2,7 +2,6 @@
 const {
   title,
   description,
-  image,
 } = Astro.props;
 import BaseLayout from "./BaseLayout.astro"
 import NavBar from "../components/NavBar.astro";
@@ -12,21 +11,12 @@ import Footer from "../components/Footer.astro";
 <BaseLayout>
   <NavBar />
 
-  <div class="mainBody">
+  <div class="mainBody text-center">
     <h1>{title}</h1>
     <p>{description}</p>
-    {image && (
-      <div class="card">
-        <img
-          src={image}
-          alt={`${title} logo`}
-          class="imageIn"
-          width="128"
-          height="128"
-        />
-      </div>
-    )}
-    <slot />
+    <div class="text-left">
+      <slot class="text-left"/>
+    </div>
   </div>
 
   <Footer />

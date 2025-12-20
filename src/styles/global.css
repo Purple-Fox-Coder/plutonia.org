@@ -120,11 +120,6 @@ input {
   width: 100%;
 }
 
-.searchIcon {
-  height: 15px;
-  margin-right: 5px;
-}
-
 .seperator {
   background: var(--colour-primary-subtle);
   width: 100%;
