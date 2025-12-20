@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { Image } from 'astro:assets';
+---
+
+<BaseLayout>
+  <NavBar />
+
+  <div class="mainBody">
+    <ProjectCard
+      title="Plutonia.org"
+      href="/projects/plutonia.org/plutonia.org/"
+      description={`This is my website where I post devlogs and blog a bit
+      about interesting projects I'm working on or have seen! Topics usually
+      include low-level development, EEG research, and Linux/OS work.`}
+    >
+      <Image
+        src={import ("../media/128x128.png")}
+        alt="Plutonia.org logo"
+        class="imageIn"
+        width="128"
+        height="128"
+      />
+    </ProjectCard>
+
+    <ProjectCard
+      title="PlutoniumOS"
+      href="/projects/plutoniumos/plutoniumos/"
+      description={`An operating system project developed as an academic
+      exercise to learn Zig and OS design fundamentals.`}
+    >
+      <Image
+        src={import ("../media/128x128.png")}
+        alt="PlutoniumOS logo"
+        class="imageIn"
+        width="128"
+        height="128"
+      />
+    </ProjectCard>
+  </div>
+
+  <Footer />
+</BaseLayout>

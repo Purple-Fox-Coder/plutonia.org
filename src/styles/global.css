@@ -1,4 +1,6 @@
-:root {
+@import "tailwindcss";
+
+@theme {
   --colour-primary:        #160C28;
   --colour-primary-subtle: #331C5F;
   --colour-primary-light:  #6035B1;
@@ -49,6 +51,7 @@
   --tag-border-radius:     2px;
 
   --tab-height:            26px;
+
 
   --font-family:           system-ui;
 }
@@ -115,11 +118,6 @@ input {
 
 .searchBar {
   width: 100%;
-}
-
-.searchIcon {
-  height: 15px;
-  margin-right: 5px;
 }
 
 .seperator {

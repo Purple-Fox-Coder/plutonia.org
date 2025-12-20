@@ -1,0 +1,26 @@
+---
+const {
+  title,
+  href,
+  description
+} = Astro.props;
+import "../styles/global.css";
+---
+
+<div class="projectBar">
+  <div class="projectInfo">
+    <div class="hdr">
+      <a class="hdr" href={href}>
+        <h1>{title}</h1>
+      </a>
+    </div>
+
+    <p>{description}</p>
+  </div>
+
+  <div class="card">
+    <a href={href}>
+      <slot />
+    </a>
+  </div>
+</div>

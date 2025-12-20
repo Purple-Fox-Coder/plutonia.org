@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+import Email from "../components/Email.astro";
+---
+
+<BaseLayout>
+  <NavBar />
+
+  <div class="mainBody">
+    <div class="w-full min-h-[30%] h-max m-auto bg-[var(--colour-secondary-subtle)] p-5 shadow-[0_0_10px_rgba(0,0,0,0.1)] flex flex-col items-center justify-center text-center">
+        <h1>Contact Me</h1>
+        <p>Have a question or just want to say hello? Feel free to reach out!</p>
+        <p>Email: <Email/></p>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>

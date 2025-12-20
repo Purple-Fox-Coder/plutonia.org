@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout>
+  <NavBar />
+
+  <div class="mainBody text-center">
+    <div class="w-full bg-[var(--colour-primary-subtle)] p-[var(--construction-padding)] shadow-md mt-[10%] text-[var(--colour-on-primary)]">
+        <h1 class="text-[#FFA929]">Under Construction</h1>
+        <p class="text-[18px]">We're working on something amazing! Check back soon.</p>
+        <p class="text-[18px]">In the meantime, you can visit my <a
+          class="no-underline font-bold text-[var(--colour-on-primary-highlight)] hover:underline"
+            href="https://github.com/Purple-Fox-Coder" target="_blank">GitHub</a>, <a
+            class="no-underline font-bold text-[var(--colour-on-primary-highlight)] hover:underline"
+            href="https://codeberg.org/Empress-Anna/">Codeberg</a>, or <a
+            class="no-underline font-bold text-[var(--colour-on-primary-highlight)] hover:underline"
+            href="contact.html">Contact Me</a>.</p>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>

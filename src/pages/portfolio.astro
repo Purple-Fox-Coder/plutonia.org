@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { Image } from 'astro:assets';
+---
+
+<BaseLayout>
+  <NavBar />
+
+  <div class="mainBody">
+    <div class="searchContainer">
+      <!-- TODO: Fix the weird stretching -->
+      <Image class="h-[15px] w-[15px]"
+        src={import ("../media/search.png")}
+        alt="search"
+      />
+      <input type="text" class="searchBar" id="searchBar" placeholder="Search..." />
+    </div>
+    <div class="seperator"></div>
+    <div id="searchResults">
+      <!-- auto generated -->
+      <div class="searchResult" onclick="window.location.href='construction.html'">
+        <h1>Project name is here</h1>
+        <p>project description</p>
+      </div>
+    </div>
+    <!-- <todo>TODO: Implement search logic</todo> -->
+  </div>
+
+  <Footer />
+</BaseLayout>

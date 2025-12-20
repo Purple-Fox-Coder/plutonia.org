@@ -1,0 +1,28 @@
+---
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import ProjectCard from "../../../components/ProjectCard.astro";
+import { Image } from 'astro:assets';
+
+const title = `plutoniumos`;
+---
+
+<ArticleLayout
+  title={`${title}`}
+  description="This is my OS (Operating System) project I'm working on as an academic exercise to learn about the zig programming language and about OS design and process of creating one."
+  >
+    <div class="flex justify-center items-center">
+      <Image
+        src={import ("../../../media/128x128.png")}
+        alt={`${title} logo`}
+        class="imageIn"
+        width="128"
+        height="128"
+      />
+    </div>
+    <!-- TODO: Make this prettier -->
+    <ProjectCard
+      title="The Kernel"
+      href="../the-kernel"
+      description={`Building the kernel: The core of an operating system`}
+    />
+</ArticleLayout>

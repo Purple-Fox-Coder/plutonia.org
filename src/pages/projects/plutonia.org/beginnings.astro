@@ -1,52 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/styles.css">
-    <title>Plutonia</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../images/16x16.png" />
-</head>
-<body>
-    <nav class="topBar">
-      <input type="checkbox" id="check">
-      <label for="check" class="checkbtn">
-        <p>≡</p>
-      </label>
+---
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import { Code } from 'astro:components';
+---
 
-      <label class="logo">Plutonia</label>
-      <ul>
-        <li><a href="../../index.html">Home</a></li>
-        <li><a href="../about.html">About Me</a></li>
-        <li><a href="../portfolio.html">Projects</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-      </ul>
-    </nav>
-
-    <div class="mainBody">
-      <div class="projectBar">
-        <div class="projectInfo">
-          <h1>Plutonia.org</h1>
-          <p>
-            This is my website where I post devlogs and blog a bit about
-            interesting projects I'm working on or have seen!  Topics will typically
-            revolve around low level development, EEG research, and linux/OS
-            development.
-
-            I often prefer to use languages like C or Zig, but there may be a
-            variety of languages here.
-          </p>
-        </div>
-        <div class="card">
-          <form action="./plutonia.org.html">
-            <input type="image" src="../../images/128x128.png" alt="Plutonia Logo"
-            name="saveForm" class="imageIn" />
-          </form>
-        </div>
-      </div>
-
-      <div class="blog">
+<ArticleLayout
+  title="plutonia.org"
+  description="My experience getting plutonia.org initially set up" image="">
+    <div class="blog">
         <h1>9/4/2025 - Beginnings</h1>
         <p class="section">
           &emsp;Today was fairly simple, planning how I want to set up the site,
@@ -57,7 +17,7 @@
           Here's a code block of it:
         </p>
         <pre>
-          <code>
+          <Code code={`
             .blog {
               background: var(--colour-medium);
               min-height: 150px;
@@ -79,7 +39,8 @@
             .blog p {
               text-indent:initial;
             }
-          </code>
+            `} lang="css"
+          />
         </pre>
         <p class="section">
           &emsp;I've set everything up so that I have the main site colours as
@@ -105,19 +66,4 @@
           I'm interested in!
         </p>
       </div>
-
-    </div>
-</body>
-<footer>
-  <div class="footer-container">
-    <p>&copy; 2025 Anna Robinson. All rights reserved. | <a href="https://plutonia.org">plutonia.org</a></p>
-    <nav>
-      <ul>
-        <li><a href="../about.html">About</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-        <li><a href="../privacy.html">Privacy Policy</a></li>
-      </ul>
-    </nav>
-  </div>
-</footer>
-</html>
+</ArticleLayout>

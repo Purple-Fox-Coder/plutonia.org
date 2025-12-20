@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+import Email from "../components/Email.astro";
+---
+
+<BaseLayout>
+  <NavBar />
+
+  <div class="mainBody">
+    <h1>Privacy Policy</h1>
+    <br />
+    <p><strong>Effective Date:</strong> 2/13/2025</p>
+    <br />
+
+    <h2>1. Introduction</h2>
+    <p>Welcome to <strong>plutonia.org</strong>. Your privacy is important to us. This Privacy Policy outlines our practices regarding the collection, use, and disclosure of information when you access our Website.</p>
+    <br />
+
+    <h2>2. No Data Collection</h2>
+    <p>We do not collect, store, track, or process any personal data from visitors. This means:</p>
+    <ul class="bulletedList">
+        <li>- No user accounts</li>
+        <li>- No cookies or tracking technologies</li>
+        <li>- No analytics or third-party data collection</li>
+    </ul>
+    <br />
+
+    <h2>3. Third-Party Links</h2>
+    <p>Our Website may contain links to external sites. We are not responsible for the privacy practices of these third-party websites.</p>
+    <br />
+
+    <h2>4. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date.</p>
+    <br />
+
+    <h2>5. Contact Us</h2>
+    <p>If you have any questions about this Privacy Policy, you can contact us at <Email />.</p>
+  </div>
+
+  <Footer />
+</BaseLayout>
