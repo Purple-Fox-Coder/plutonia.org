@@ -1,12 +1,22 @@
 ---
 import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 import { Code } from 'astro:components';
+
+export const meta = {
+  title: "The Kernel",
+  description:
+  `
+  Building the kernel: The core of an operating system
+  `,
+  date: new Date("2025-9-4"),
+  tags: [ "git", "zig", "assembly", "C", "qemu", "VNC", "Limine" ]
+};
 ---
 
 <ArticleLayout
-  title="The Kernel (9/4/2025)"
-  description="Building the kernel: The core of an operating system"
-  image="">
+  title={meta.title}
+  description={meta.description}
+  >
       <div class="blog">
           <h1>9/4/2025 - The Kernel</h1>
           <p class="section">

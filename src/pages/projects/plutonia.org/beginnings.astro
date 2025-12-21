@@ -1,13 +1,24 @@
 ---
 import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 import { Code } from 'astro:components';
+
+export const meta = {
+  title: "Beginnings",
+  description:
+  `
+  My experience getting plutonia.org initially set up
+  `,
+  date: new Date("2025-9-4"),
+  tags: [ "html", "css" ]
+};
 ---
 
 <ArticleLayout
-  title="plutonia.org"
-  description="My experience getting plutonia.org initially set up" image="">
+  title={meta.title}
+  description={meta.description}
+  >
     <div class="blog">
-        <h1>9/4/2025 - Beginnings</h1>
+        <h1>Beginnings</h1>
         <p class="section">
           &emsp;Today was fairly simple, planning how I want to set up the site,
           what kind of things I want to post here.. the like.  Not a ton to say,
