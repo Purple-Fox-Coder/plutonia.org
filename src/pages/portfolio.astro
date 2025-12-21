@@ -3,30 +3,78 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import NavBar from "../components/NavBar.astro";
 import Footer from "../components/Footer.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import ArticleCard from "../components/ArticleCard.astro";
 import { Image } from 'astro:assets';
+
+
+const files = import.meta.glob('./projects/*/*.astro', { eager: true });
+
+const projects = {};
+
+for (const [path, mod] of Object.entries(files)) {
+  const [, , projectName, fileName] = path.split('/');
+
+  if (!projects[projectName]) {
+    projects[projectName] = {
+      project: null,
+      posts: [],
+    };
+  }
+
+  if (fileName === `${projectName}.astro`) {
+    projects[projectName].project = mod;
+  } else {
+    projects[projectName].posts.push(mod);
+  }
+}
+
+// for (const project of Object.values(projects)) {
+//   project.posts.sort(
+//     (a, b) =>
+//       new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
+//   );
 ---
 
 <BaseLayout>
   <NavBar />
 
   <div class="mainBody">
-    <div class="searchContainer">
-      <!-- TODO: Fix the weird stretching -->
-      <Image class="h-[15px] w-[15px]"
-        src={import ("../media/search.png")}
-        alt="search"
-      />
-      <input type="text" class="searchBar" id="searchBar" placeholder="Search..." />
-    </div>
-    <div class="seperator"></div>
-    <div id="searchResults">
-      <!-- auto generated -->
-      <div class="searchResult" onclick="window.location.href='construction.html'">
-        <h1>Project name is here</h1>
-        <p>project description</p>
-      </div>
-    </div>
-    <!-- <todo>TODO: Implement search logic</todo> -->
+    <ul>
+      {Object.entries(projects).map(([name, data]) => {
+        return (
+          <li key={name}>
+            <!-- Projects -->
+            <ProjectCard
+              title={data.project?.meta?.title ?? name}
+              href={data.project.url}
+              description={data.project?.meta?.description}
+            />
+
+            <!-- Articles -->
+            {data.posts.length > 0 && (
+              <section>
+                <ul>
+                  {data.posts.map((post) => (
+                    <div class="seperator" />
+                    <li>
+                      <ArticleCard
+                        title={post.meta?.title}
+                        url={post.url}
+                        description={post.meta?.description}
+                        image={post.meta?.image}
+                        tags={post.meta?.tags}
+                      />
+
+                    </li>
+                  ))}
+                  <div class="seperator" />
+                </ul>
+              </section>
+            )}
+          </li>
+        );
+      })}
+    </ul>
   </div>
 
   <Footer />

@@ -1,0 +1,56 @@
+---
+export interface Props {
+  title: string;
+  url: string;
+  description?: string;
+  image?: string;
+  tags?: string[];
+}
+
+const { title, url, description, image, tags = [] } = Astro.props;
+
+const tagLogos: Record<string, string> = {
+  // C: '../media/c.svg',
+  // Zig: '../media/zig.svg',
+  // HTML: '../media/html.svg',
+  // CSS: '../media/css.svg',
+  // JS: '../media/js.svg',
+};
+---
+
+<div class="flex flex-col overflow-hidden bg-[var(--colour-secondary-light)]
+  shadow-sm hover:shadow-lg transition-shadow duration-200"
+>
+  {image && (
+    <a href={url} class="article-card-image">
+      <img src={image} alt={title} loading="lazy" class="w-full h-48 object-cover"/>
+    </a>
+  )}
+
+  <div class="p-4 flex flex-col flex-1">
+    <h3 class="text-xl font-semibold mb-2">
+      <a href={url} class="hover:text-[var(--text-colour-highlight)] transition-colors">
+        <h2>{title}<h2>
+      </a>
+    </h3>
+
+    {description && <p class="text-[var(--text-colour-subtle)] mb-4">{description}</p>}
+
+    {tags && tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mt-auto">
+        {tags.map((tag) => (
+          <span class="flex items-center gap-1 px-2 py-1 bg-[var(--colour-primary-subtle)]
+            text-[var(--colour-on-primary-subtle)] rounded text-sm"
+            title={tag}
+          >
+            {tagLogos[tag] ? (
+              <img src={tagLogos[tag]} alt={tag} class="w-4 h-4" />
+            ) : (
+              tag
+            )}
+          </span>
+        ))}
+      </div>
+    )}
+  </div>
+</div>
