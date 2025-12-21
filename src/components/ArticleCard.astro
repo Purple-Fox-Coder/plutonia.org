@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 export interface Props {
   title: string;
   url: string;
@@ -10,11 +12,18 @@ export interface Props {
 const { title, url, description, image, tags = [] } = Astro.props;
 
 const tagLogos: Record<string, string> = {
-  // C: '../media/c.svg',
-  // Zig: '../media/zig.svg',
-  // HTML: '../media/html.svg',
-  // CSS: '../media/css.svg',
-  // JS: '../media/js.svg',
+  C: '/logos/c.svg',
+  'C++': '/logos/c++.svg',
+  Zig: '/logos/zig.svg',
+  HTML: '/logos/html.svg',
+  CSS: '/logos/css.svg',
+  JS: '/logos/js.svg',
+  TS: '/logos/ts.svg',
+  Rust: '/logos/rust.svg',
+  Nix: '/logos/nix.svg',
+  WASM: '/logos/wasm.svg',
+  QEMU: '/logos/qemu.svg',
+  Git: '/logos/git.svg'
 };
 ---
 
@@ -44,13 +53,24 @@ const tagLogos: Record<string, string> = {
             title={tag}
           >
             {tagLogos[tag] ? (
-              <img src={tagLogos[tag]} alt={tag} class="w-4 h-4" />
+              <span class="flex items-center gap-1">
+                <img src={tagLogos[tag]} alt={tag} class="w-4 h-4" />
+                <span>{tag}</span>
+              </span>
             ) : (
-              tag
+              <span>{tag}</span>
             )}
+
+
           </span>
         ))}
       </div>
     )}
   </div>
 </div>
+
+<!--             {tagLogos[tag] ? (
+              <img src={tagLogos[tag]} alt={tag} class="w-4 h-4"/>
+            ) : (
+              {tag}
+            )} -->
