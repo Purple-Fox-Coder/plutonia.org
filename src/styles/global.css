@@ -339,6 +339,8 @@
     border-radius: 0px;
     margin: 0px;
 
+    z-index: 100;
+
     background: var(--colour-primary);
     color: var(--colour-on-primary);
     height: 80px;

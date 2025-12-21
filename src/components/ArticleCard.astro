@@ -5,11 +5,17 @@ export interface Props {
   title: string;
   url: string;
   description?: string;
-  image?: string;
+  image_src?: string;
   tags?: string[];
 }
 
-const { title, url, description, image, tags = [] } = Astro.props;
+const {
+  title,
+  url,
+  description,
+  image,
+  tags = []
+} = Astro.props;
 
 const tagLogos: Record<string, string> = {
   C: '/logos/c.svg',
