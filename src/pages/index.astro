@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar.astro";
 import Footer from "../components/Footer.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import ArticleCard from "../components/ArticleCard.astro";
+import Email from "../components/Email.astro";
 import { Image } from 'astro:assets';
 
 import LogoLarge from "../media/128x128.png";
@@ -81,6 +82,7 @@ for (const [path, mod] of Object.entries(files)) {
                 href={data.project.url}
                 description={data.project?.meta?.description}
                 image_src={LogoLarge.src}
+                tags={data.project?.meta?.tags}
               />
             </li>
           );
@@ -89,7 +91,7 @@ for (const [path, mod] of Object.entries(files)) {
         }
       })}
     </ul>
-  </div>
 
+  </div>
   <Footer />
 </BaseLayout>

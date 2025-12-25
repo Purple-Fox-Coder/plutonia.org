@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import Tag from "./Tag.astro";
 
 export interface Props {
   title: string;
@@ -54,29 +55,9 @@ const tagLogos: Record<string, string> = {
     {tags && tags.length > 0 && (
       <div class="flex flex-wrap gap-2 mt-auto">
         {tags.map((tag) => (
-          <span class="flex items-center gap-1 px-2 py-1 bg-[var(--colour-primary-subtle)]
-            text-[var(--colour-on-primary-subtle)] rounded text-sm"
-            title={tag}
-          >
-            {tagLogos[tag] ? (
-              <span class="flex items-center gap-1">
-                <img src={tagLogos[tag]} alt={tag} class="w-4 h-4" />
-                <span>{tag}</span>
-              </span>
-            ) : (
-              <span>{tag}</span>
-            )}
-
-
-          </span>
+          <Tag name={tag} />
         ))}
       </div>
     )}
   </div>
 </div>
-
-<!--             {tagLogos[tag] ? (
-              <img src={tagLogos[tag]} alt={tag} class="w-4 h-4"/>
-            ) : (
-              {tag}
-            )} -->
