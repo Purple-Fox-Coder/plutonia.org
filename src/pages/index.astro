@@ -6,28 +6,50 @@ import ProjectCard from "../components/ProjectCard.astro";
 import { Image } from 'astro:assets';
 
 import LogoLarge from "../media/128x128.png";
+
+const files = import.meta.glob('./projects/*/*.astro', { eager: true });
+
+const projects = {};
+
+for (const [path, mod] of Object.entries(files)) {
+  const [, , projectName, fileName] = path.split('/');
+
+  if (!projects[projectName]) {
+    projects[projectName] = {
+      project: null
+    };
+  }
+
+  if (fileName === `${projectName}.astro`) {
+    projects[projectName].project = mod;
+    continue;
+  }
+}
 ---
 
 <BaseLayout>
   <NavBar />
 
   <div class="mainBody">
-    <ProjectCard
-      title="Plutonia.org"
-      href="/projects/plutonia.org/plutonia.org/"
-      description={`This is my website where I post devlogs and blog a bit
-      about interesting projects I'm working on or have seen! Topics usually
-      include low-level development, EEG research, and Linux/OS work.`}
-      image_src={LogoLarge.src}
-    />
-
-    <ProjectCard
-      title="PlutoniumOS"
-      href="/projects/plutoniumos/plutoniumos/"
-      description={`An operating system project developed as an academic
-      exercise to learn Zig and OS design fundamentals.`}
-      image_src={LogoLarge.src}
-    />
+    <ul>
+      {Object.entries(projects).map(([name, data]) => {
+        if (data.project?.meta?.isFeatured) {
+          return (
+            <li key={name}>
+              <!-- Projects -->
+              <ProjectCard
+                title={data.project?.meta?.title ?? name}
+                href={data.project.url}
+                description={data.project?.meta?.description}
+                image_src={LogoLarge.src}
+              />
+            </li>
+          );
+        } else {
+          return null;
+        }
+      })}
+    </ul>
   </div>
 
   <Footer />
