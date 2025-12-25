@@ -1,6 +1,7 @@
 ---
 import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 import ProjectCard from "../../../components/ProjectCard.astro";
+import ArticleCard from "../../../components/ArticleCard.astro";
 import { Image } from 'astro:assets';
 
 export const meta = {
@@ -17,6 +18,21 @@ export const meta = {
   tags: [ "Astro", "HTML", "CSS" ],
   isFeatured: true
 };
+
+const files = import.meta.glob('./*.astro', { eager: true });
+
+const articles = {};
+
+for (const [, mod] of Object.entries(files)) {
+  if (mod.meta?.title != meta.title) {
+    if (!articles[mod.meta.title]) {
+      articles[mod.meta.title] = {
+        article: null
+      };
+    }
+    articles[mod.meta.title].article = mod;
+  }
+}
 ---
 
 <ArticleLayout
@@ -32,10 +48,21 @@ export const meta = {
         height="128"
       />
     </div>
-    <!-- TODO: Make this prettier -->
-    <ProjectCard
-      title="beginnings"
-      href="../beginnings"
-      description={`My experience getting plutonia.org initially set up`}
-    />
+    <ul>
+      {Object.entries(articles).map(([name, data]) => {
+        return (
+          <li key={name}>
+            <div class="seperator" />
+              <ArticleCard
+                title={data.article?.meta?.title}
+                url={data.article?.url}
+                description={data.article?.meta?.description}
+                image={data.article?.meta?.image}
+                tags={data.article?.meta?.tags}
+              />
+          </li>
+        );
+      })}
+    </ul>
+    <div class="seperator" />
 </ArticleLayout>
