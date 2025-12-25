@@ -1,26 +1,55 @@
 ---
+import Tag from "./Tag.astro";
+
+export interface Props {
+  title: string;
+  href: string;
+  description?: string;
+  image_src?: string;
+  tags?: string[];
+}
+
 const {
   title,
   href,
-  description
+  description,
+  image_src,
+  tags = []
 } = Astro.props;
 import "../styles/global.css";
 ---
 
 <div class="projectBar">
-  <div class="projectInfo">
-    <div class="hdr">
-      <a class="hdr" href={href}>
-        <h1>{title}</h1>
+  <div class="relative z-0 p-6 projectInfo">
+    <a
+      href={href}
+      class="absolute inset-y-0 left-1/2 -translate-x-1/2 z-1 flex items-left
+            h-full w-full object-cover opacity-25 object-contain"
+    >
+      <img
+        src={image_src}
+        class="h-full w-auto"
+      />
+    </a>
+
+    <div class="z-2 hdr">
+      <a href={href}>
+        <h1 class="text-2xl font-bold hdr">
+          {title}
+        </h1>
       </a>
     </div>
 
-    <p>{description}</p>
-  </div>
+    <p class="z-2 mt-2">
+      {description}
+    </p>
 
-  <div class="card">
-    <a href={href}>
-      <slot />
-    </a>
+    {tags && tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mt-auto opacity-75">
+        {tags.map((tag) => (
+          <Tag name={tag} />
+        ))}
+      </div>
+    )}
   </div>
 </div>

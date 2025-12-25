@@ -1,0 +1,40 @@
+---
+export interface Props {
+  name: string;
+}
+
+const {
+  name,
+} = Astro.props;
+
+const tagLogos: Record<string, string> = {
+  C: '/logos/c.svg',
+  'C++': '/logos/c++.svg',
+  Zig: '/logos/zig.svg',
+  HTML: '/logos/html.svg',
+  CSS: '/logos/css.svg',
+  JS: '/logos/js.svg',
+  TS: '/logos/ts.svg',
+  Rust: '/logos/rust.svg',
+  Nix: '/logos/nix.svg',
+  WASM: '/logos/wasm.svg',
+  QEMU: '/logos/qemu.svg',
+  Git: '/logos/git.svg'
+};
+---
+
+<span class="flex items-center gap-1 px-2 py-1 bg-[var(--colour-primary-subtle)]
+  text-[var(--colour-on-primary-subtle)] rounded text-sm"
+  title={name}
+>
+  {tagLogos[name] ? (
+    <span class="flex items-center gap-1">
+      <img src={tagLogos[name]} alt={name} class="w-4 h-4" />
+      <span>{name}</span>
+    </span>
+  ) : (
+    <span>{name}</span>
+  )}
+
+
+</span>
