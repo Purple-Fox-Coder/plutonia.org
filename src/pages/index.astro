@@ -68,9 +68,10 @@ for (const [path, mod] of Object.entries(files)) {
           )
         );
       })}
-      <div class="seperator" />
     </ul>
+    <div class="seperator" />
     <h1>Featured Projects:</h1>
+    <div class="seperator" />
     <ul>
       {Object.entries(projects).map(([name, data]) => {
         if (data.project?.meta?.isFeatured) {
