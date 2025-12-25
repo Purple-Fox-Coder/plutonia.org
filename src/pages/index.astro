@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import NavBar from "../components/NavBar.astro";
 import Footer from "../components/Footer.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import ArticleCard from "../components/ArticleCard.astro";
 import { Image } from 'astro:assets';
 
 import LogoLarge from "../media/128x128.png";
@@ -16,13 +17,15 @@ for (const [path, mod] of Object.entries(files)) {
 
   if (!projects[projectName]) {
     projects[projectName] = {
-      project: null
+      project: null,
+      posts: [],
     };
   }
 
   if (fileName === `${projectName}.astro`) {
     projects[projectName].project = mod;
-    continue;
+  } else {
+    projects[projectName].posts.push(mod);
   }
 }
 ---
@@ -31,6 +34,42 @@ for (const [path, mod] of Object.entries(files)) {
   <NavBar />
 
   <div class="mainBody">
+    <h1>New Articles:</h1>
+    <ul>
+      {Object.entries(projects).map(([name, data]) => {
+        return (
+          data.posts.length > 0 && (
+            <li key={name}>
+              {data.posts.map((post) => {
+                const post_date = new Date(post.meta?.date);
+                const today = new Date();
+                const age_milliseconds = today - post_date;
+                const age_days = age_milliseconds / (1000 * 60 * 60 * 24);
+
+                if (30 >= age_days) {
+                  return (
+                    <div key={post.url}>
+                      <div class="seperator" />
+                      <ArticleCard
+                        title={post.meta?.title}
+                        url={post.url}
+                        description={post.meta?.description}
+                        image={post.meta?.image}
+                        tags={post.meta?.tags}
+                      />
+                    </div>
+                  );
+                }
+
+                return null;
+              })}
+            </li>
+          )
+        );
+      })}
+      <div class="seperator" />
+    </ul>
+    <h1>Featured Projects:</h1>
     <ul>
       {Object.entries(projects).map(([name, data]) => {
         if (data.project?.meta?.isFeatured) {
