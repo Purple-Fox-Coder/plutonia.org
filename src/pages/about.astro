@@ -2,48 +2,69 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import NavBar from "../components/NavBar.astro";
 import Footer from "../components/Footer.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 ---
 
 <BaseLayout>
   <NavBar />
 
   <div class="mainBody text-center">
-    <div class="center">
-        <h1>About Me</h1>
-        <p>Hi, I'm Anna!</p>
-        <p>I'm a programmer passionate about art, learning,  programming languages, open source, and especially backend development!</p>
-        <br />
-        <p>
-          This website is where I share my projects and experiment with my web ideas!
-        </p>
-        <p>
-          Current plans for this website:
-          <ul>
-            <li>
-              - implement search on <a href="portfolio.html">projects page</a>
-            </li>
-            <li>
-              - provide german translation
-            </li>
-            <li>
-              - provide site source code
-            </li>
-          </ul>
-        </p>
-        <br />
-        <h2>Learn About My Projects</h2>
-        <p>
-          My current projects are listed on the <a href="../index.html">homepage</a> or, you can search them at <a href="portfolio.html">my projects page</a>!
-        </p>
-        <h2>Find Me Online</h2>
-        <p>
-            <strong>Codeberg:</strong><a href="https://codeberg.org/Empress-Anna/">codeberg.org/Empress-Anna</a> <br />
-            <strong>GitHub:</strong> <a href="https://github.com/Purple-Fox-Coder" target="_blank">github.com/Purple-Fox-Coder</a> <br>
-            <strong>Translation Work:</strong> <a href="https://translatewiki.net/wiki/User:AnnaTheProgrammer777" target="_blank">Translate Wiki</a>
-        </p>
-        <p>Feel free to reach out through my <a href="contact.html">Contact Page</a>.</p>
+    <div class="blog">
+      <h1>Hi there!  I'm Anna</h1>
+      <p>
+        I love working with and learning about new technologies and programming
+        languages, especially through open-source projects!  I do a little art
+        on the side and I almost always have some sort of project going (whether
+        or not it’s listed here yet).
+      </p>
+      <p>
+        When it comes to programming, I love solving problems.  Be it maintaining
+        a project, or making something new.. it always draws me in; if there's a
+        problem to be solved, you'll find me interested in working on it.  I do
+        often have a preference for working with databases, the server side, or on
+        standalone desktop applications; I essentially prefer backend development
+        by definition (as evidenced by this website I'll still do frontend though).
+      </p>
+      <br />
+      <h2>Find Me Online</h2>
+    </div>
+    <div class="text-left">
+      <ProjectCard
+        title="Codeberg"
+        href=https://codeberg.org/Empress-Anna/
+        description={`My Codeberg account, this is where I keep most of my repos
+                      and the majority of my projects`}
+        image_src="/logos/codeberg.svg"
+      />
+      <ProjectCard
+        title="Github"
+        href=https://github.com/Purple-Fox-Coder
+        description={`My GitHub account, I mostly keep my older projects here,
+                      however if the project calls for github specifically then
+                      it will be here.  An example are my packages for the Pulsar
+                      editor`}
+        image_src="/logos/github.svg"
+      />
+    </div>
+    <div class="blog">
+      <!-- Site aside -->
+      <br />
+      <br />
+      <p>
+        Featured projects are listed on my <a href="../">homepage</a>
+        or, you can look through all of my projects at
+        <a href="../portfolio">my projects page</a>!
+      </p>
+      <p>
+        If you find an issue with the website, feel free to
+        <a href="https://github.com/Purple-Fox-Coder/plutonia.org/issues/new?template=bug_report.md">
+          make a bug report on the GitHub
+        </a>!  You can also view the source code at:
+        <a href="https://github.com/Purple-Fox-Coder/plutonia.org">
+          github.com/Purple-Fox-Coder/plutonia.org
+        </a>
+      </p>
     </div>
   </div>
-
   <Footer />
 </BaseLayout>

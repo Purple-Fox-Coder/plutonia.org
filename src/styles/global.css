@@ -177,7 +177,7 @@
   }
 
   .projectInfo h1 {
-    font-size: clamp(12px, 5vw, var(--title-font-size));
+    font-size: var(--title-font-size); /* clamp(12px, 5vw, var(--title-font-size)); */
   }
 
   .projectInfo p {
